@@ -4,6 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "dharmay dave",
   description: "Portfolio",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -21,15 +26,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body
-        style={{
-          margin: 0,
-          minHeight: "100vh",
-          backgroundColor: "#0f0f0f",
-          color: "#e5e5e5",
-          fontFamily: "'Syne', sans-serif",
-        }}
-      >
+      <body>
         {children}
       </body>
     </html>

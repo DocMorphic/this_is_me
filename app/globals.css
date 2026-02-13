@@ -137,11 +137,11 @@ body.bw .card-projects:hover {
 }
 
 body.bw .card-projects .section-title {
-  color: #fff;
+  color: #fff !important;
 }
 
 body.bw .card-projects .card-icon {
-  color: #fff;
+  color: #fff !important;
   opacity: 0.9;
 }
 
@@ -157,11 +157,11 @@ body.bw .card-edu:hover {
 }
 
 body.bw .card-edu .section-title {
-  color: #fff;
+  color: #fff !important;
 }
 
 body.bw .card-edu .card-icon {
-  color: #fff;
+  color: #fff !important;
   opacity: 0.9;
 }
 
@@ -177,11 +177,11 @@ body.bw .card-exp:hover {
 }
 
 body.bw .card-exp .section-title {
-  color: #fff;
+  color: #fff !important;
 }
 
 body.bw .card-exp .card-icon {
-  color: #fff;
+  color: #fff !important;
   opacity: 0.9;
 }
 

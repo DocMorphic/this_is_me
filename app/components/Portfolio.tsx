@@ -13,7 +13,7 @@ const TYPEWRITER_WORDS = [
   "cool things.",
   "the future.",
   "React apps.",
-  "what if ideas.",
+  "\"what if\" ideas.",
 ];
 
 const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "KeyB", "KeyA"];
@@ -188,8 +188,12 @@ export default function Portfolio() {
             onKeyDown={(e: any) => e.key === "Enter" && showView("projects")}
             index={2}
           >
-            <div className="card-icon">⚙️</div>
-            <div className="section-title">PRO<br />JECTS.</div>
+            <div className="card-icon" style={{ color: "#ffffff" }}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+              </svg>
+            </div>
+            <div className="section-title" style={{ color: "#ffffff" }}>PRO<br />JECTS.</div>
           </DraggableCard>
 
           <DraggableCard
@@ -200,8 +204,13 @@ export default function Portfolio() {
             onKeyDown={(e: any) => e.key === "Enter" && showView("education")}
             index={3}
           >
-            <div className="card-icon">🎓</div>
-            <div className="section-title">EDU<br />CATION.</div>
+            <div className="card-icon" style={{ color: "#ffffff" }}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+            </div>
+            <div className="section-title" style={{ color: "#ffffff" }}>EDU<br />CATION.</div>
           </DraggableCard>
 
           <DraggableCard className="card col-3 avail-card" index={4}>
@@ -229,7 +238,7 @@ export default function Portfolio() {
 
           <DraggableCard className="card col-3" index={6}>
             <div className="card-title" style={{ fontSize: 22, marginBottom: 16 }}>SPORT.</div>
-            <div className="sport-line"><span className="sport-emoji">🏐</span><span>national <strong>volleyball</strong>, Gujarat</span></div>
+            <div className="sport-line"><span className="sport-emoji">🏐</span><span>national <strong>volleyball</strong>, India</span></div>
             <div className="sport-line"><span className="sport-emoji">🎾</span><span>national <strong>squash</strong>, Gujarat</span></div>
             <div style={{ fontSize: 12, color: "var(--dim)", marginTop: 6 }}>2022 – 2024</div>
           </DraggableCard>
@@ -242,8 +251,13 @@ export default function Portfolio() {
             onKeyDown={(e: any) => e.key === "Enter" && showView("experience")}
             index={7}
           >
-            <div className="card-icon" style={{ color: "#fff" }}>💼</div>
-            <div className="section-title">EXP<br />ERIENCE.</div>
+            <div className="card-icon" style={{ color: "#ffffff" }}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
+            </div>
+            <div className="section-title" style={{ color: "#ffffff" }}>EXP<br />ERIENCE.</div>
           </DraggableCard>
 
           <DraggableCard className="card col-6 no-hover spotify-card" index={8}>
