@@ -1,613 +1,1533 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dharmay dave</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap"
+    rel="stylesheet" />
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
     /* ── COLOUR THEMES ── */
-    :root{
-      --bg:#141414;
-      --card:#1e1e1e;
-      --card-h:#252525;
-      --border:#2c2c2c;
-      --border-h:#3e3e3e;
-      --text:#e8e8e8;
-      --muted:#888;
-      --dim:#555;
-      --tag-bg:#2a2a2a;
-      --orange:#f97316;
-      --green:#4ade80;
-      --r:16px;
+    :root {
+      --bg: #141414;
+      --card: #1e1e1e;
+      --card-h: #252525;
+      --border: #2c2c2c;
+      --border-h: #3e3e3e;
+      --text: #e8e8e8;
+      --muted: #888;
+      --dim: #555;
+      --tag-bg: #2a2a2a;
+      --orange: #f97316;
+      --green: #4ade80;
+      --r: 16px;
     }
-    body.bw{
-      --bg:#f0f0f0;
-      --card:#ffffff;
-      --card-h:#f5f5f5;
-      --border:#d0d0d0;
-      --border-h:#aaaaaa;
-      --text:#111111;
-      --muted:#666666;
-      --dim:#aaaaaa;
-      --tag-bg:#e8e8e8;
-      --orange:#111111;
-      --green:#222222;
-    }
-    body.bw .card-projects{background:#e0e0e0;border-color:#bbb}
-    body.bw .card-thoughts{background:#e8e8e8;border-color:#ccc}
-    body.bw .avail-card{background:#e8e8e8;border-color:#ccc}
-    body.bw .avail-text,.bw .avail-label{color:#333}
-    body.bw .avail-sub{color:#888}
-    body.bw .status-dot{background:#555}
-    body.bw .section-title{color:#111}
-    body.bw .card-icon{color:#333;opacity:1}
-    body.bw .song-item:hover{background:rgba(0,0,0,.05);border-color:#999}
-    body.bw .bar{background:#333}
-    body.bw .spotify-logo{background:#333}
-    body.bw .theme-btn{background:#ddd;border-color:#bbb;color:#333}
 
-    html{scroll-behavior:smooth}
-    body{
-      background:var(--bg);
-      color:var(--text);
-      font-family:'Syne',sans-serif;
-      font-size:15px;
-      line-height:1.5;
-      padding:20px;
-      transition:background .3s,color .3s;
+    body.bw {
+      --bg: #f0f0f0;
+      --card: #ffffff;
+      --card-h: #f5f5f5;
+      --border: #d0d0d0;
+      --border-h: #aaaaaa;
+      --text: #111111;
+      --muted: #666666;
+      --dim: #aaaaaa;
+      --tag-bg: #e8e8e8;
+      --orange: #111111;
+      --green: #222222;
+    }
+
+    body.bw .card-projects {
+      background: #e0e0e0;
+      border-color: #bbb
+    }
+
+    body.bw .card-thoughts {
+      background: #e8e8e8;
+      border-color: #ccc
+    }
+
+    body.bw .avail-card {
+      background: #e8e8e8;
+      border-color: #ccc
+    }
+
+    body.bw .avail-text,
+    .bw .avail-label {
+      color: #333
+    }
+
+    body.bw .avail-sub {
+      color: #888
+    }
+
+    body.bw .status-dot {
+      background: #555
+    }
+
+    body.bw .section-title {
+      color: #111
+    }
+
+    body.bw .card-icon {
+      color: #333;
+      opacity: 1
+    }
+
+    body.bw .song-item:hover {
+      background: rgba(0, 0, 0, .05);
+      border-color: #999
+    }
+
+    body.bw .bar {
+      background: #333
+    }
+
+    body.bw .spotify-logo {
+      background: #333
+    }
+
+    body.bw .theme-btn {
+      background: #ddd;
+      border-color: #bbb;
+      color: #333
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      padding: 20px;
+      transition: background .3s, color .3s;
     }
 
     /* ── THEME BUTTON ── */
-    .theme-btn{
-      position:fixed;top:20px;right:20px;
-      z-index:999;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:40px;
-      padding:8px 16px;
-      font-family:'Syne',sans-serif;
-      font-size:12px;font-weight:600;
-      color:var(--muted);
-      cursor:pointer;
-      letter-spacing:.06em;
-      transition:background .2s,border-color .2s,color .2s,transform .15s;
-      display:flex;align-items:center;gap:8px;
+    /* ── THEME SWITCH ── */
+    .theme-switch {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: transform .15s ease;
     }
-    .theme-btn:hover{background:var(--card-h);border-color:var(--border-h);color:var(--text);transform:scale(1.04)}
-    .theme-btn .icon{font-size:14px;transition:transform .4s}
-    .theme-btn:hover .icon{transform:rotate(180deg)}
+
+    .theme-switch:active {
+      transform: scale(0.95)
+    }
+
+    .switch-track {
+      width: 64px;
+      height: 32px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background .3s, border-color .3s;
+    }
+
+    .switch-track:hover {
+      border-color: var(--border-h)
+    }
+
+    .switch-knob {
+      width: 24px;
+      height: 24px;
+      background: var(--text);
+      border-radius: 50%;
+      position: absolute;
+      left: 4px;
+      transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
+      z-index: 2;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .switch-icons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 6px;
+      font-size: 14px;
+      color: var(--muted);
+      user-select: none;
+    }
+
+    body.bw .switch-knob {
+      transform: translateX(32px);
+      background: var(--text)
+    }
+
+    body.bw .theme-switch .switch-track {
+      background: #e0e0e0
+    }
 
     /* ── VIEWS ── */
-    .view{display:none}
-    .view.active{display:block;animation:viewIn .35s ease}
-    @keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .view {
+      display: none
+    }
+
+    .view.active {
+      display: block;
+      animation: viewIn .35s ease
+    }
+
+    @keyframes viewIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
 
     /* ── GRID ── */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:12px;
-      max-width:1100px;
-      margin:0 auto;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     /* ── CARD ── */
-    .card{
-      background:var(--card);
-      border-radius:var(--r);
-      padding:28px;
-      border:1px solid var(--border);
-      position:relative;
-      overflow:hidden;
-      opacity:0;
-      transform:translateY(14px);
-      animation:cardIn .5s cubic-bezier(.22,.68,0,1.2) forwards;
-      transition:background .25s,border-color .25s,transform .22s,box-shadow .22s;
+    .card {
+      background: var(--card);
+      border-radius: var(--r);
+      padding: 28px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: cardIn .5s cubic-bezier(.22, .68, 0, 1.2) forwards;
+      transition: background .25s, border-color .25s, transform .22s, box-shadow .22s;
     }
-    .card:hover{
-      background:var(--card-h);
-      border-color:var(--border-h);
-      transform:translateY(-3px);
-      box-shadow:0 12px 40px rgba(0,0,0,.3);
+
+    .card:hover {
+      background: var(--card-h);
+      border-color: var(--border-h);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .3);
     }
-    body.bw .card:hover{box-shadow:0 8px 24px rgba(0,0,0,.12)}
-    .no-hover:hover{transform:none!important;box-shadow:none!important;background:var(--card)!important;border-color:var(--border)!important}
-    .link-card{text-decoration:none;color:inherit;display:block;cursor:pointer}
-    .link-card:hover{transform:translateY(-5px)!important}
 
-    @keyframes cardIn{to{opacity:1;transform:translateY(0)}}
-    .card:nth-child(1){animation-delay:.03s}.card:nth-child(2){animation-delay:.09s}
-    .card:nth-child(3){animation-delay:.15s}.card:nth-child(4){animation-delay:.21s}
-    .card:nth-child(5){animation-delay:.27s}.card:nth-child(6){animation-delay:.33s}
-    .card:nth-child(7){animation-delay:.39s}.card:nth-child(8){animation-delay:.45s}
-    .card:nth-child(9){animation-delay:.51s}.card:nth-child(10){animation-delay:.57s}
-    .card:nth-child(11){animation-delay:.63s}.card:nth-child(12){animation-delay:.69s}
-    .card:nth-child(13){animation-delay:.75s}.card:nth-child(14){animation-delay:.81s}
-    .card:nth-child(15){animation-delay:.87s}
+    body.bw .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .12)
+    }
 
-    .col-12{grid-column:span 12}.col-7{grid-column:span 7}.col-6{grid-column:span 6}
-    .col-5{grid-column:span 5}.col-4{grid-column:span 4}.col-3{grid-column:span 3}
+    .no-hover:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      background: var(--card) !important;
+      border-color: var(--border) !important
+    }
+
+    .link-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer
+    }
+
+    .link-card:hover {
+      transform: translateY(-5px) !important
+    }
+
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .card:nth-child(1) {
+      animation-delay: .03s
+    }
+
+    .card:nth-child(2) {
+      animation-delay: .09s
+    }
+
+    .card:nth-child(3) {
+      animation-delay: .15s
+    }
+
+    .card:nth-child(4) {
+      animation-delay: .21s
+    }
+
+    .card:nth-child(5) {
+      animation-delay: .27s
+    }
+
+    .card:nth-child(6) {
+      animation-delay: .33s
+    }
+
+    .card:nth-child(7) {
+      animation-delay: .39s
+    }
+
+    .card:nth-child(8) {
+      animation-delay: .45s
+    }
+
+    .card:nth-child(9) {
+      animation-delay: .51s
+    }
+
+    .card:nth-child(10) {
+      animation-delay: .57s
+    }
+
+    .card:nth-child(11) {
+      animation-delay: .63s
+    }
+
+    .card:nth-child(12) {
+      animation-delay: .69s
+    }
+
+    .card:nth-child(13) {
+      animation-delay: .75s
+    }
+
+    .card:nth-child(14) {
+      animation-delay: .81s
+    }
+
+    .card:nth-child(15) {
+      animation-delay: .87s
+    }
+
+    .col-12 {
+      grid-column: span 12
+    }
+
+    .col-7 {
+      grid-column: span 7
+    }
+
+    .col-6 {
+      grid-column: span 6
+    }
+
+    .col-5 {
+      grid-column: span 5
+    }
+
+    .col-4 {
+      grid-column: span 4
+    }
+
+    .col-3 {
+      grid-column: span 3
+    }
 
     /* ── HERO ── */
-    .hero-card{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-    .hero-name{font-size:22px;font-weight:700;margin-bottom:6px}
-    .hero-tagline{font-size:15px;color:var(--muted);margin-bottom:18px}
-    .tw-word{color:var(--text);font-weight:700;display:inline-block;min-width:4ch}
-    .tw-cursor{display:inline-block;width:2px;height:1em;background:var(--text);margin-left:2px;vertical-align:text-bottom;animation:blink .75s step-end infinite}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-    .hero-desc{font-size:14px;color:var(--muted);max-width:520px;line-height:1.7}
-    .hero-emoji{font-size:36px;user-select:none;flex-shrink:0}
-    .status-line{font-size:12px;color:var(--muted);margin-top:18px;display:flex;align-items:center}
-    .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:8px;animation:pulse 2s ease-in-out infinite}
-    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+    .hero-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px
+    }
+
+    .hero-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px
+    }
+
+    .hero-tagline {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 18px
+    }
+
+    .tw-word {
+      color: var(--text);
+      font-weight: 700;
+      display: inline-block;
+      min-width: 4ch
+    }
+
+    .tw-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--text);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink .75s step-end infinite
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7
+    }
+
+    .hero-emoji {
+      font-size: 36px;
+      user-select: none;
+      flex-shrink: 0
+    }
+
+    .status-line {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 18px;
+      display: flex;
+      align-items: center
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-right: 8px;
+      animation: pulse 2s ease-in-out infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .4;
+        transform: scale(.85)
+      }
+    }
 
     /* ── CARD TITLE ── */
-    .card-title{font-size:28px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-    .bracket{color:var(--dim);font-size:22px}
+    .card-title {
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .bracket {
+      color: var(--dim);
+      font-size: 22px
+    }
 
     /* ── TAGS ── */
-    .tag-section{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;margin-top:16px}
-    .tag-section:first-of-type{margin-top:0}
-    .tag-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:2px}
-    .tag{
-      background:var(--tag-bg);color:var(--muted);
-      border-radius:8px;padding:5px 13px;
-      font-size:13px;font-weight:500;
-      border:1px solid var(--border);
-      transition:background .15s,color .15s,border-color .15s,transform .15s;
-      cursor:default;
+    .tag-section {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 10px;
+      margin-top: 16px
     }
-    .tag:hover{background:var(--card-h);color:var(--text);border-color:var(--border-h);transform:translateY(-1px)}
+
+    .tag-section:first-of-type {
+      margin-top: 0
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 2px
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--muted);
+      border-radius: 8px;
+      padding: 5px 13px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      transition: background .15s, color .15s, border-color .15s, transform .15s;
+      cursor: default;
+    }
+
+    .tag:hover {
+      background: var(--card-h);
+      color: var(--text);
+      border-color: var(--border-h);
+      transform: translateY(-1px)
+    }
 
     /* ── ACCENT SECTION CARDS ── */
-    .section-card{min-height:160px;display:flex;flex-direction:column;justify-content:space-between}
-    .section-title{font-size:clamp(36px,4.8vw,54px);font-weight:800;line-height:.95;letter-spacing:-.02em;text-transform:uppercase;color:#fff;margin-top:12px}
-    .card-icon{align-self:flex-end;font-size:26px;opacity:.75;display:flex;align-items:center;justify-content:center;transition:transform .4s ease,opacity .2s;color:#fff}
-    .card-projects:hover .card-icon{transform:rotate(120deg);opacity:1}
-    .card-thoughts:hover .card-icon{animation:wobble .5s ease forwards;opacity:1}
-    @keyframes wobble{0%{transform:rotate(0)}25%{transform:rotate(-18deg)}50%{transform:rotate(14deg)}75%{transform:rotate(-8deg)}100%{transform:rotate(0)}}
+    .section-card {
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between
+    }
+
+    .section-title {
+      font-size: clamp(36px, 4.8vw, 54px);
+      font-weight: 800;
+      line-height: .95;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-top: 12px
+    }
+
+    .card-icon {
+      align-self: flex-end;
+      font-size: 26px;
+      opacity: .75;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .4s ease, opacity .2s;
+      color: #fff
+    }
+
+    .card-projects:hover .card-icon {
+      transform: rotate(120deg);
+      opacity: 1
+    }
+
+    .card-thoughts:hover .card-icon {
+      animation: wobble .5s ease forwards;
+      opacity: 1
+    }
+
+    @keyframes wobble {
+      0% {
+        transform: rotate(0)
+      }
+
+      25% {
+        transform: rotate(-18deg)
+      }
+
+      50% {
+        transform: rotate(14deg)
+      }
+
+      75% {
+        transform: rotate(-8deg)
+      }
+
+      100% {
+        transform: rotate(0)
+      }
+    }
 
     /* shimmer sweep */
-    .card-projects::after,.card-thoughts::after{
-      content:'';position:absolute;top:-60%;left:-60%;
-      width:60%;height:200%;
-      background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.07) 50%,transparent 60%);
-      transform:skewX(-20deg) translateX(-100%);
+    .card-projects::after,
+    .card-thoughts::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .07) 50%, transparent 60%);
+      transform: skewX(-20deg) translateX(-100%);
     }
-    .card-projects:hover::after,.card-thoughts:hover::after{animation:shimmer .65s ease forwards}
-    @keyframes shimmer{to{transform:skewX(-20deg) translateX(350%)}}
 
-    .card-projects{background:linear-gradient(135deg,#2d1060 0%,#1a0525 100%);border-color:#3d1a6a}
-    .card-projects:hover{border-color:#6040aa}
-    .card-thoughts{background:linear-gradient(135deg,#0f3a3a 0%,#0a2828 100%);border-color:#1a4a4a}
-    .card-thoughts:hover{border-color:#2a7070}
+    .card-projects:hover::after,
+    .card-thoughts:hover::after {
+      animation: shimmer .65s ease forwards
+    }
+
+    @keyframes shimmer {
+      to {
+        transform: skewX(-20deg) translateX(350%)
+      }
+    }
+
+    .card-projects {
+      background: linear-gradient(135deg, #2d1060 0%, #1a0525 100%);
+      border-color: #3d1a6a
+    }
+
+    .card-projects:hover {
+      border-color: #6040aa
+    }
+
+    .card-thoughts {
+      background: linear-gradient(135deg, #0f3a3a 0%, #0a2828 100%);
+      border-color: #1a4a4a
+    }
+
+    .card-thoughts:hover {
+      border-color: #2a7070
+    }
+
+    .card-exp {
+      background: linear-gradient(135deg, #3a1a0f 0%, #28100a 100%);
+      border-color: #4a2a1a
+    }
+
+    .card-exp:hover {
+      border-color: #70302a
+    }
+
+    .card-exp:hover .card-icon {
+      transform: translateY(-3px) scale(1.1);
+      opacity: 1
+    }
+
+    .card-exp::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .07) 50%, transparent 60%);
+      transform: skewX(-20deg) translateX(-100%);
+    }
+
+    .card-exp:hover::after {
+      animation: shimmer .65s ease forwards
+    }
 
     /* ── AVAILABLE ── */
-    .avail-card{background:linear-gradient(135deg,#0f2a1a 0%,#091a10 100%);border-color:#1a4a2a;display:flex;flex-direction:column;justify-content:space-between;min-height:120px}
-    .avail-card:hover{border-color:#2d8050}
-    .avail-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);opacity:.7}
-    .avail-text{font-size:20px;font-weight:700;color:var(--green);margin-top:8px}
-    .avail-sub{font-size:12px;color:rgba(74,222,128,.4);margin-top:4px}
+    .avail-card {
+      background: linear-gradient(135deg, #0f2a1a 0%, #091a10 100%);
+      border-color: #1a4a2a;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px
+    }
+
+    .avail-card:hover {
+      border-color: #2d8050
+    }
+
+    .avail-label {
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      opacity: .7
+    }
+
+    .avail-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--green);
+      margin-top: 8px
+    }
+
+    .avail-sub {
+      font-size: 12px;
+      color: rgba(74, 222, 128, .4);
+      margin-top: 4px
+    }
 
     /* ── SPORT ── */
-    .sport-line{font-size:14px;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:10px}
-    .sport-line strong{color:var(--text)}
-    .sport-emoji{font-size:20px;display:inline-block;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
-    .sport-line:hover .sport-emoji{transform:scale(1.35) rotate(-10deg)}
+    .sport-line {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .sport-line strong {
+      color: var(--text)
+    }
+
+    .sport-emoji {
+      font-size: 20px;
+      display: inline-block;
+      transition: transform .3s cubic-bezier(.34, 1.56, .64, 1)
+    }
+
+    .sport-line:hover .sport-emoji {
+      transform: scale(1.35) rotate(-10deg)
+    }
 
     /* ── LOCATION ── */
-    .loc-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-    .loc-value{font-size:22px;font-weight:700;margin-top:8px}
+    .loc-label {
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--dim)
+    }
+
+    .loc-value {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 8px
+    }
 
     /* ── QUOTE ── */
-    .quote-card{display:flex;flex-direction:column;justify-content:flex-end}
-    .quote-text{font-size:14px;color:var(--muted);line-height:1.75;font-style:italic}
-    .quote-text strong{color:var(--text);font-style:normal}
-    .quote-attr{margin-top:14px;font-size:12px;color:var(--dim);font-family:'Syne Mono',monospace}
+    .quote-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end
+    }
+
+    .quote-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-style: italic
+    }
+
+    .quote-text strong {
+      color: var(--text);
+      font-style: normal
+    }
+
+    .quote-attr {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--dim);
+      font-family: 'Syne Mono', monospace
+    }
 
     /* ── LINKS ── */
-    .links-row{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
-    .link-icon{
-      width:44px;height:44px;
-      background:var(--tag-bg);border:1px solid var(--border);
-      border-radius:10px;display:flex;align-items:center;justify-content:center;
-      text-decoration:none;color:var(--muted);
-      transition:background .18s,border-color .18s,color .18s,transform .2s cubic-bezier(.34,1.56,.64,1);
+    .links-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap
     }
-    .link-icon:hover{background:var(--card-h);border-color:var(--border-h);color:var(--text);transform:scale(1.15) rotate(-5deg)}
+
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--muted);
+      transition: background .18s, border-color .18s, color .18s, transform .2s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .link-icon:hover {
+      background: var(--card-h);
+      border-color: var(--border-h);
+      color: var(--text);
+      transform: scale(1.15) rotate(-5deg)
+    }
 
     /* ── SPOTIFY ── */
-    .spotify-card{display:flex;flex-direction:column;gap:12px}
-    .spotify-header{display:flex;align-items:center;gap:10px;margin-bottom:2px}
-    .spotify-logo{width:22px;height:22px;flex-shrink:0;background:#1db954;border-radius:50%;display:flex;align-items:center;justify-content:center}
-    .spotify-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-
-    .song-item{
-      display:flex;align-items:center;gap:14px;
-      padding:10px 12px;
-      border-radius:10px;
-      background:rgba(255,255,255,.03);
-      border:1px solid var(--border);
-      transition:background .2s,border-color .2s,transform .2s;
-      cursor:default;text-decoration:none;color:inherit;
+    .spotify-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
     }
-    body.bw .song-item{background:rgba(0,0,0,.03)}
-    .song-item:hover{background:rgba(29,185,84,.08);border-color:rgba(29,185,84,.3);transform:translateX(4px)}
-    body.bw .song-item:hover{background:rgba(0,0,0,.07);border-color:#999}
 
-    .album-art{
-      width:52px;height:52px;flex-shrink:0;
-      border-radius:8px;
-      overflow:hidden;
-      position:relative;
+    .spotify-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2px
     }
-    .album-art img{
-      width:100%;height:100%;
-      object-fit:cover;
-      display:block;
-      transition:transform .3s ease;
+
+    .spotify-logo {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      background: #1db954;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center
     }
-    .song-item:hover .album-art img{transform:scale(1.06)}
 
-    .song-info{flex:1;min-width:0}
-    .song-name{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .song-artist{font-size:12px;color:var(--muted);margin-top:2px}
+    .spotify-label {
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--dim)
+    }
 
-    .song-playing{width:18px;height:18px;flex-shrink:0;display:flex;align-items:flex-end;gap:2px;opacity:0;transition:opacity .2s}
-    .song-item:hover .song-playing{opacity:1}
-    .bar{width:3px;background:#1db954;border-radius:2px;animation:barAnim 1s ease-in-out infinite}
-    .bar:nth-child(1){height:8px;animation-delay:0s}
-    .bar:nth-child(2){height:14px;animation-delay:.2s}
-    .bar:nth-child(3){height:6px;animation-delay:.4s}
-    @keyframes barAnim{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+    .song-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid var(--border);
+      transition: background .2s, border-color .2s, transform .2s;
+      cursor: default;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    body.bw .song-item {
+      background: rgba(0, 0, 0, .03)
+    }
+
+    .song-item:hover {
+      background: rgba(29, 185, 84, .08);
+      border-color: rgba(29, 185, 84, .3);
+      transform: translateX(4px)
+    }
+
+    body.bw .song-item:hover {
+      background: rgba(0, 0, 0, .07);
+      border-color: #999
+    }
+
+    .album-art {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .album-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s ease;
+    }
+
+    .song-item:hover .album-art img {
+      transform: scale(1.06)
+    }
+
+    .song-info {
+      flex: 1;
+      min-width: 0
+    }
+
+    .song-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .song-artist {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .song-playing {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      opacity: 0;
+      transition: opacity .2s
+    }
+
+    .song-item:hover .song-playing {
+      opacity: 1
+    }
+
+    .bar {
+      width: 3px;
+      background: #1db954;
+      border-radius: 2px;
+      animation: barAnim 1s ease-in-out infinite
+    }
+
+    .bar:nth-child(1) {
+      height: 8px;
+      animation-delay: 0s
+    }
+
+    .bar:nth-child(2) {
+      height: 14px;
+      animation-delay: .2s
+    }
+
+    .bar:nth-child(3) {
+      height: 6px;
+      animation-delay: .4s
+    }
+
+    @keyframes barAnim {
+
+      0%,
+      100% {
+        transform: scaleY(.4)
+      }
+
+      50% {
+        transform: scaleY(1)
+      }
+    }
 
     /* ── BACK BUTTON ── */
-    .back-btn{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:13px;color:var(--muted);
-      background:none;border:none;
-      font-family:'Syne',sans-serif;cursor:pointer;
-      transition:color .2s;margin-bottom:32px;padding:0;
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      background: none;
+      border: none;
+      font-family: 'Syne', sans-serif;
+      cursor: pointer;
+      transition: color .2s;
+      margin-bottom: 32px;
+      padding: 0;
     }
-    .back-btn:hover{color:var(--text)}
+
+    .back-btn:hover {
+      color: var(--text)
+    }
 
     /* ── PAGE TITLE ── */
-    .page-title{font-size:clamp(52px,9vw,110px);font-weight:800;line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:48px}
+    .page-title {
+      font-size: clamp(52px, 9vw, 110px);
+      font-weight: 800;
+      line-height: .9;
+      letter-spacing: -.03em;
+      text-transform: uppercase;
+      margin-bottom: 48px
+    }
 
     /* ── PROJECT ROWS ── */
-    .proj-list{display:flex;flex-direction:column;gap:2px}
-    .proj-row{
-      display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;
-      padding:28px;border-radius:12px;
-      background:var(--card);border:1px solid var(--border);
-      transition:background .2s,border-color .2s,transform .2s;
-      text-decoration:none;color:inherit;
+    .proj-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px
     }
-    .proj-row:hover{background:var(--card-h);border-color:var(--border-h);transform:translateX(6px)}
-    .proj-row-name{font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:6px}
-    .proj-row-desc{font-size:13px;color:var(--muted);line-height:1.6;max-width:600px}
-    .proj-row-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
-    .proj-row-tag{font-size:11px;color:var(--dim);background:var(--tag-bg);border-radius:5px;padding:3px 8px}
-    .proj-row-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:4px}
-    .proj-ext-link{
-      font-family:'Syne Mono',monospace;font-size:11px;
-      color:var(--dim);text-decoration:none;
-      border:1px solid var(--border);border-radius:6px;padding:4px 10px;
-      transition:color .15s,border-color .15s,background .15s;white-space:nowrap;
+
+    .proj-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding: 28px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: background .2s, border-color .2s, transform .2s;
+      text-decoration: none;
+      color: inherit;
     }
-    .proj-ext-link:hover{color:var(--text);border-color:var(--border-h);background:var(--card-h)}
+
+    .proj-row:hover {
+      background: var(--card-h);
+      border-color: var(--border-h);
+      transform: translateX(6px)
+    }
+
+    .proj-row-name {
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+      margin-bottom: 6px
+    }
+
+    .proj-row-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 600px
+    }
+
+    .proj-row-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 12px
+    }
+
+    .proj-row-tag {
+      font-size: 11px;
+      color: var(--dim);
+      background: var(--tag-bg);
+      border-radius: 5px;
+      padding: 3px 8px
+    }
+
+    .proj-row-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      padding-top: 4px
+    }
+
+    .proj-ext-link {
+      font-family: 'Syne Mono', monospace;
+      font-size: 11px;
+      color: var(--dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      transition: color .15s, border-color .15s, background .15s;
+      white-space: nowrap;
+    }
+
+    .proj-ext-link:hover {
+      color: var(--text);
+      border-color: var(--border-h);
+      background: var(--card-h)
+    }
 
     /* ── THOUGHTS ── */
-    .thought-list{display:flex;flex-direction:column;gap:12px}
-    .thought-item{padding:24px;border-radius:12px;background:var(--card);border:1px solid var(--border)}
-    .thought-meta{font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace;margin-bottom:10px}
-    .thought-title{font-size:18px;font-weight:700;margin-bottom:8px}
-    .thought-body{font-size:14px;color:var(--muted);line-height:1.75}
+    .thought-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .thought-item {
+      padding: 24px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border)
+    }
+
+    .thought-meta {
+      font-size: 11px;
+      color: var(--dim);
+      font-family: 'Syne Mono', monospace;
+      margin-bottom: 10px
+    }
+
+    .thought-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .thought-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75
+    }
 
     /* ── FOOTER ── */
-    .footer-row{grid-column:span 12;text-align:center;padding:10px 0 6px;opacity:0;animation:cardIn .5s 1s forwards}
-    .footer-row span{font-size:12px;color:var(--dim);font-family:'Syne Mono',monospace}
+    .footer-row {
+      grid-column: span 12;
+      text-align: center;
+      padding: 10px 0 6px;
+      opacity: 0;
+      animation: cardIn .5s 1s forwards
+    }
+
+    .footer-row span {
+      font-size: 12px;
+      color: var(--dim);
+      font-family: 'Syne Mono', monospace
+    }
 
     /* ── RESPONSIVE ── */
-    @media(max-width:860px){
-      body{padding:12px}
-      .grid{grid-template-columns:repeat(6,1fr);gap:10px}
-      .col-7,.col-5,.col-4,.col-3{grid-column:span 6}
-      .col-6{grid-column:span 6}
-      .col-12,.footer-row{grid-column:span 6}
-      .proj-row{grid-template-columns:1fr}
-      .proj-row-right{align-items:flex-start}
-      .theme-btn{top:12px;right:12px}
+    @media(max-width:860px) {
+      body {
+        padding: 12px
+      }
+
+      .grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px
+      }
+
+      .col-7,
+      .col-5,
+      .col-4,
+      .col-3 {
+        grid-column: span 6
+      }
+
+      .col-6 {
+        grid-column: span 6
+      }
+
+      .col-12,
+      .footer-row {
+        grid-column: span 6
+      }
+
+      .proj-row {
+        grid-template-columns: 1fr
+      }
+
+      .proj-row-right {
+        align-items: flex-start
+      }
+
+      .theme-btn {
+        top: 12px;
+        right: 12px
+      }
     }
-    @media(max-width:520px){
-      .grid{grid-template-columns:1fr}
-      .col-12,.col-7,.col-6,.col-5,.col-4,.col-3,.footer-row{grid-column:span 1}
-      .section-title{font-size:38px}
-      .hero-card{flex-direction:column;gap:12px}
-      .page-title{font-size:52px}
+
+    @media(max-width:520px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .col-12,
+      .col-7,
+      .col-6,
+      .col-5,
+      .col-4,
+      .col-3,
+      .footer-row {
+        grid-column: span 1
+      }
+
+      .section-title {
+        font-size: 38px
+      }
+
+      .hero-card {
+        flex-direction: column;
+        gap: 12px
+      }
+
+      .page-title {
+        font-size: 52px
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- THEME TOGGLE -->
-<button class="theme-btn" onclick="toggleTheme()">
-  <span class="icon">◐</span>
-  <span id="theme-label">B&amp;W</span>
-</button>
-
-<!-- ══════════════════ HOME ══════════════════ -->
-<div id="view-home" class="view active">
-<div class="grid">
-
-  <!-- HERO -->
-  <div class="card col-12 hero-card">
-    <div>
-      <div class="hero-name">dharmay dave</div>
-      <div class="hero-tagline">i make <span id="tw-word" class="tw-word"></span><span class="tw-cursor"></span></div>
-      <div class="hero-desc">
-        cs student at <strong style="color:var(--text)">TU Munich</strong>, fullstack engineer,
-        national-level athlete. i like hard problems and people who've already solved them.
+  <!-- THEME TOGGLE -->
+  <!-- THEME TOGGLE -->
+  <button class="theme-switch" onclick="toggleTheme()" aria-label="Toggle Theme">
+    <div class="switch-track">
+      <div class="switch-icons">
+        <span>☾</span>
+        <span>☀</span>
       </div>
-      <div class="status-line"><span class="status-dot"></span>munich &nbsp;·&nbsp; open to internships</div>
+      <div class="switch-knob"></div>
     </div>
-    <div class="hero-emoji">🇩🇪</div>
-  </div>
+  </button>
 
-  <!-- STACKS -->
-  <div class="card col-5">
-    <div class="card-title"><span class="bracket">{}</span> STACKs.</div>
-    <div class="tag-section">Web & Mobile:</div>
-    <div class="tag-row">
-      <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Node.js</span>
-      <span class="tag">Python</span><span class="tag">Java</span><span class="tag">TypeScript</span>
-      <span class="tag">React Native</span>
-    </div>
-    <div class="tag-section">Game Dev:</div>
-    <div class="tag-row">
-      <span class="tag">Godot</span><span class="tag">Unity</span><span class="tag">Unreal Engine</span>
-    </div>
-    <div class="tag-section">Into:</div>
-    <div class="tag-row">
-      <span class="tag">LLMs</span><span class="tag">AI Agents</span><span class="tag">HCI</span><span class="tag">IoT</span>
-    </div>
-  </div>
+  <!-- ══════════════════ HOME ══════════════════ -->
+  <div id="view-home" class="view active">
+    <div class="grid">
 
-  <!-- PROJECTS accent -->
-  <div class="card col-4 section-card card-projects link-card" onclick="showView('projects')">
-    <div class="card-icon">⚙️</div>
-    <div class="section-title">PRO<br>JECTS.</div>
-  </div>
-
-  <!-- THOUGHTS accent -->
-  <div class="card col-3 section-card card-thoughts link-card" onclick="showView('thoughts')">
-    <div class="card-icon">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
-      </svg>
-    </div>
-    <div class="section-title">THOU<br>GHTS.</div>
-  </div>
-
-  <!-- AVAILABLE -->
-  <div class="card col-3 avail-card">
-    <div class="avail-label">Status</div>
-    <div class="avail-text">Available.</div>
-    <div class="avail-sub">internships &amp; projects</div>
-  </div>
-
-  <!-- LOCATION -->
-  <div class="card col-3">
-    <div class="loc-label">Location</div>
-    <div class="loc-value">Munich 🇩🇪</div>
-    <div style="font-size:13px;color:var(--muted);margin-top:6px">TU Munich · CS</div>
-    <div style="font-size:12px;color:var(--dim);margin-top:16px">originally from Rajkot, India 🇮🇳</div>
-  </div>
-
-  <!-- SPORT -->
-  <div class="card col-3">
-    <div class="card-title" style="font-size:22px;margin-bottom:16px">SPORT.</div>
-    <div class="sport-line"><span class="sport-emoji">🏐</span><span>national <strong>volleyball</strong>, Gujarat</span></div>
-    <div class="sport-line"><span class="sport-emoji">🎾</span><span>national <strong>squash</strong>, Gujarat</span></div>
-    <div style="font-size:12px;color:var(--dim);margin-top:6px">2022 – 2024</div>
-  </div>
-
-  <!-- SPOTIFY -->
-  <div class="card col-6 no-hover spotify-card">
-    <div class="spotify-header">
-      <div class="spotify-logo">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      </div>
-      <span class="spotify-label">on repeat lately</span>
-    </div>
-
-    <a class="song-item" href="https://open.spotify.com/track/1lbNgoJ5iMrMluCyhI4OQP" target="_blank">
-      <div class="album-art">
-        <img src="https://i.scdn.co/image/ab67616d00001e02bf705b821b031cefe91d7b90" alt="Victory Lap" loading="lazy"/>
-      </div>
-      <div class="song-info">
-        <div class="song-name">Victory Lap</div>
-        <div class="song-artist">Fred again.., Skepta, PlaqueBoyMax</div>
-      </div>
-      <div class="song-playing">
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      </div>
-    </a>
-
-    <a class="song-item" href="https://open.spotify.com/track/2364WrvPTUHobDNURudCbM" target="_blank">
-      <div class="album-art">
-        <img src="https://i.scdn.co/image/ab67616d00001e02f9c2232084a4ed05f9aa6362" alt="If You Don't Want My Love" loading="lazy"/>
-      </div>
-      <div class="song-info">
-        <div class="song-name">If You Don't Want My Love</div>
-        <div class="song-artist">Jalen Ngonda</div>
-      </div>
-      <div class="song-playing">
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      </div>
-    </a>
-  </div>
-
-  <!-- QUOTE -->
-  <div class="card col-6 quote-card">
-    <div class="quote-text">
-      "i don't have much experience, but i'm a <strong>fast learner</strong> —
-      and i've actually been told so by many people.
-      i just want to learn from and work with the best people."
-    </div>
-    <div class="quote-attr">— dharmay, on himself</div>
-  </div>
-
-  <!-- LINKS -->
-  <div class="card col-6">
-    <div class="card-title" style="font-size:22px">LINKS.</div>
-    <div class="links-row">
-      <a class="link-icon" href="mailto:davedharmay@gmail.com" title="Email">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      </a>
-      <a class="link-icon" href="https://github.com/DocMorphic" target="_blank" title="GitHub">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
-      </a>
-      <a class="link-icon" href="https://www.linkedin.com/in/dharmay-dave/" target="_blank" title="LinkedIn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <div class="footer-row"><span>© 2026 dharmay dave · munich</span></div>
-
-</div>
-</div>
-
-<!-- ══════════════════ PROJECTS PAGE ══════════════════ -->
-<div id="view-projects" class="view">
-  <div style="max-width:1100px;margin:0 auto;padding:20px 0">
-    <button class="back-btn" onclick="showView('home')">← back</button>
-    <div class="page-title">PRO<br>JECTS.</div>
-    <div class="proj-list">
-
-      <div class="proj-row" onclick="window.open('https://github.com/DocMorphic/lighthouse','_blank')" style="cursor:pointer">
+      <!-- HERO -->
+      <div class="card col-12 hero-card">
         <div>
-          <div class="proj-row-name">🗺️ Lighthouse</div>
-          <div class="proj-row-desc">Cross-platform mobile nav app using open-source geospatial data. Real-time routing with OpenStreetMap integration and scalable maps.</div>
-          <div class="proj-row-tags"><span class="proj-row-tag">React Native</span><span class="proj-row-tag">Expo</span><span class="proj-row-tag">OpenStreetMap</span></div>
+          <div class="hero-name">dharmay dave</div>
+          <div class="hero-tagline">i make <span id="tw-word" class="tw-word"></span><span class="tw-cursor"></span>
+          </div>
+          <div class="hero-desc">
+            cs student at <strong style="color:var(--text)">TU Munich</strong>, fullstack engineer,
+            national-level athlete. i like hard problems and people who've already solved them.
+          </div>
+          <div class="status-line"><span class="status-dot"></span>munich &nbsp;·&nbsp; open to internships</div>
         </div>
-        <div class="proj-row-right">
-          <a class="proj-ext-link" href="https://github.com/DocMorphic/lighthouse" target="_blank" onclick="event.stopPropagation()">github ↗</a>
+        <div class="hero-emoji">🇩🇪</div>
+      </div>
+
+      <!-- STACKS -->
+      <div class="card col-5">
+        <div class="card-title"><span class="bracket">{}</span> STACKs.</div>
+        <div class="tag-section">Web & Mobile:</div>
+        <div class="tag-row">
+          <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Node.js</span>
+          <span class="tag">Python</span><span class="tag">Java</span><span class="tag">TypeScript</span>
+          <span class="tag">React Native</span>
+        </div>
+        <div class="tag-section">Game Dev:</div>
+        <div class="tag-row">
+          <span class="tag">Godot</span><span class="tag">Unity</span><span class="tag">Unreal Engine</span>
+        </div>
+        <div class="tag-section">Into:</div>
+        <div class="tag-row">
+          <span class="tag">LLMs</span><span class="tag">AI Agents</span><span class="tag">HCI</span><span
+            class="tag">IoT</span>
         </div>
       </div>
 
-      <div class="proj-row" onclick="window.open('https://hashiii.vercel.app','_blank')" style="cursor:pointer">
-        <div>
-          <div class="proj-row-name">🌉 Hashi</div>
-          <div class="proj-row-desc">Web logic puzzle with graph-based bridge validation. Responsive and live on Vercel.</div>
-          <div class="proj-row-tags"><span class="proj-row-tag">TypeScript</span><span class="proj-row-tag">React</span><span class="proj-row-tag">CSS3</span></div>
+      <!-- PROJECTS accent -->
+      <div class="card col-4 section-card card-projects link-card" onclick="showView('projects')">
+        <div class="card-icon">⚙️</div>
+        <div class="section-title">PRO<br>JECTS.</div>
+      </div>
+
+      <!-- THOUGHTS accent -->
+      <div class="card col-3 section-card card-thoughts link-card" onclick="showView('thoughts')">
+        <div class="card-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+          </svg>
         </div>
-        <div class="proj-row-right">
-          <a class="proj-ext-link" href="https://hashiii.vercel.app" target="_blank" onclick="event.stopPropagation()">live ↗</a>
+        <div class="section-title">THOU<br>GHTS.</div>
+      </div>
+
+      <!-- AVAILABLE -->
+      <div class="card col-3 avail-card">
+        <div class="avail-label">Status</div>
+        <div class="avail-text">Available.</div>
+        <div class="avail-sub">internships &amp; projects</div>
+      </div>
+
+      <!-- LOCATION -->
+      <div class="card col-3">
+        <div class="loc-label">Location</div>
+        <div class="loc-value">Munich 🇩🇪</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:6px">TU Munich · CS</div>
+        <div style="font-size:12px;color:var(--dim);margin-top:16px">originally from Rajkot, India 🇮🇳</div>
+      </div>
+
+      <!-- SPORT -->
+      <div class="card col-3">
+        <div class="card-title" style="font-size:22px;margin-bottom:16px">SPORT.</div>
+        <div class="sport-line"><span class="sport-emoji">🏐</span><span>national <strong>volleyball</strong>,
+            Gujarat</span></div>
+        <div class="sport-line"><span class="sport-emoji">🎾</span><span>national <strong>squash</strong>,
+            Gujarat</span></div>
+        <div style="font-size:12px;color:var(--dim);margin-top:6px">2022 – 2024</div>
+      </div>
+
+      <!-- EXPERIENCE accent -->
+      <div class="card col-3 section-card card-exp link-card" onclick="showView('experience')">
+        <div class="card-icon" style="color:#fff">💼</div>
+        <div class="section-title">EXP.<br>& EDU.</div>
+      </div>
+
+      <!-- SPOTIFY -->
+      <div class="card col-6 no-hover spotify-card">
+        <div class="spotify-header">
+          <div class="spotify-logo">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+            </svg>
+          </div>
+          <span class="spotify-label">on repeat lately</span>
+        </div>
+
+        <a class="song-item" href="https://open.spotify.com/track/1lbNgoJ5iMrMluCyhI4OQP" target="_blank">
+          <div class="album-art">
+            <img src="https://i.scdn.co/image/ab67616d00001e02bf705b821b031cefe91d7b90" alt="Victory Lap"
+              loading="lazy" />
+          </div>
+          <div class="song-info">
+            <div class="song-name">Victory Lap</div>
+            <div class="song-artist">Fred again.., Skepta, PlaqueBoyMax</div>
+          </div>
+          <div class="song-playing">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </a>
+
+        <a class="song-item" href="https://open.spotify.com/track/2364WrvPTUHobDNURudCbM" target="_blank">
+          <div class="album-art">
+            <img src="https://i.scdn.co/image/ab67616d00001e02f9c2232084a4ed05f9aa6362" alt="If You Don't Want My Love"
+              loading="lazy" />
+          </div>
+          <div class="song-info">
+            <div class="song-name">If You Don't Want My Love</div>
+            <div class="song-artist">Jalen Ngonda</div>
+          </div>
+          <div class="song-playing">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- QUOTE -->
+      <div class="card col-6 quote-card">
+        <div class="quote-text">
+          "i don't have much experience, but i'm a <strong>fast learner</strong> —
+          and i've actually been told so by many people.
+          i just want to learn from and work with the best people."
+        </div>
+        <div class="quote-attr">— dharmay, on himself</div>
+      </div>
+
+      <!-- LINKS -->
+      <div class="card col-6">
+        <div class="card-title" style="font-size:22px">LINKS.</div>
+        <div class="links-row">
+          <a class="link-icon" href="mailto:davedharmay@gmail.com" title="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </a>
+          <a class="link-icon" href="https://github.com/DocMorphic" target="_blank" title="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12" />
+            </svg>
+          </a>
+          <a class="link-icon" href="https://www.linkedin.com/in/dharmay-dave/" target="_blank" title="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+          </a>
         </div>
       </div>
 
-      <div class="proj-row">
-        <div>
-          <div class="proj-row-name">🎮 Framed</div>
-          <div class="proj-row-desc">PvP arena fighter with a window-based environmental mechanic. Custom physics and collision, non-traditional arenas built from scratch in Godot.</div>
-          <div class="proj-row-tags"><span class="proj-row-tag">GDScript</span><span class="proj-row-tag">Godot</span><span class="proj-row-tag">Blender</span></div>
-        </div>
-        <div class="proj-row-right"><span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">local build</span></div>
-      </div>
-
-      <div class="proj-row">
-        <div>
-          <div class="proj-row-name">🏠 Voice Home Control</div>
-          <div class="proj-row-desc">IoT system on Raspberry Pi for hands-free voice control of home appliances with real-time signal processing.</div>
-          <div class="proj-row-tags"><span class="proj-row-tag">Python</span><span class="proj-row-tag">Raspberry Pi</span><span class="proj-row-tag">GPIO</span></div>
-        </div>
-        <div class="proj-row-right"></div>
-      </div>
-
-      <div class="proj-row">
-        <div>
-          <div class="proj-row-name">🤖 AI Health Chatbot</div>
-          <div class="proj-row-desc">Built from scratch in Python + NLP. Answers health queries, generates wellness prompts, and suggests medications from symptoms.</div>
-          <div class="proj-row-tags"><span class="proj-row-tag">Python</span><span class="proj-row-tag">NLP</span></div>
-        </div>
-        <div class="proj-row-right"></div>
-      </div>
+      <div class="footer-row"><span>© 2026 dharmay dave · munich</span></div>
 
     </div>
   </div>
-</div>
 
-<!-- ══════════════════ THOUGHTS PAGE ══════════════════ -->
-<div id="view-thoughts" class="view">
-  <div style="max-width:1100px;margin:0 auto;padding:20px 0">
-    <button class="back-btn" onclick="showView('home')">← back</button>
-    <div class="page-title">THOU<br>GHTS.</div>
-    <div class="thought-list">
-      <div class="thought-item">
-        <div class="thought-meta">feb 2026 · on learning</div>
-        <div class="thought-title">being a fast learner is the only real skill</div>
-        <div class="thought-body">every job posting asks for 3 years of experience with a framework that's 2 years old. the only thing that actually compounds is the ability to pick things up quickly — the frameworks change, the curiosity doesn't.</div>
-      </div>
-      <div class="thought-item">
-        <div class="thought-meta">jan 2026 · on building</div>
-        <div class="thought-title">ship it ugly, then fix it</div>
-        <div class="thought-body">the cleanest code i've never written is also the code that's never run. momentum matters more than perfection, especially early. you learn what something actually needs to be by watching people use the broken version.</div>
-      </div>
-      <div class="thought-item">
-        <div class="thought-meta">dec 2025 · on sport &amp; code</div>
-        <div class="thought-title">competing at nationals taught me more about engineering than school did</div>
-        <div class="thought-body">showing up when you don't want to, performing under pressure, reading the game in real time — turns out that's also 80% of what makes a good engineer. the other 20% is stackoverflow.</div>
+  <!-- ══════════════════ PROJECTS PAGE ══════════════════ -->
+  <div id="view-projects" class="view">
+    <div style="max-width:1100px;margin:0 auto;padding:20px 0">
+      <button class="back-btn" onclick="showView('home')">← back</button>
+      <div class="page-title">PRO<br>JECTS.</div>
+      <div class="proj-list">
+
+        <div class="proj-row" onclick="window.open('https://github.com/DocMorphic/lighthouse','_blank')"
+          style="cursor:pointer">
+          <div>
+            <div class="proj-row-name">🗺️ Lighthouse</div>
+            <div class="proj-row-desc">Cross-platform mobile nav app using open-source geospatial data. Real-time
+              routing with OpenStreetMap integration and scalable maps.</div>
+            <div class="proj-row-tags"><span class="proj-row-tag">React Native</span><span
+                class="proj-row-tag">Expo</span><span class="proj-row-tag">OpenStreetMap</span></div>
+          </div>
+          <div class="proj-row-right">
+            <a class="proj-ext-link" href="https://github.com/DocMorphic/lighthouse" target="_blank"
+              onclick="event.stopPropagation()">github ↗</a>
+          </div>
+        </div>
+
+        <div class="proj-row" onclick="window.open('https://hashiii.vercel.app','_blank')" style="cursor:pointer">
+          <div>
+            <div class="proj-row-name">🌉 Hashi</div>
+            <div class="proj-row-desc">Web logic puzzle with graph-based bridge validation. Responsive and live on
+              Vercel.</div>
+            <div class="proj-row-tags"><span class="proj-row-tag">TypeScript</span><span
+                class="proj-row-tag">React</span><span class="proj-row-tag">CSS3</span></div>
+          </div>
+          <div class="proj-row-right">
+            <a class="proj-ext-link" href="https://hashiii.vercel.app" target="_blank"
+              onclick="event.stopPropagation()">live ↗</a>
+          </div>
+        </div>
+
+        <div class="proj-row">
+          <div>
+            <div class="proj-row-name">🎮 Framed</div>
+            <div class="proj-row-desc">PvP arena fighter with a window-based environmental mechanic. Custom physics and
+              collision, non-traditional arenas built from scratch in Godot.</div>
+            <div class="proj-row-tags"><span class="proj-row-tag">GDScript</span><span
+                class="proj-row-tag">Godot</span><span class="proj-row-tag">Blender</span></div>
+          </div>
+          <div class="proj-row-right"><span
+              style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">local build</span></div>
+        </div>
+
+        <div class="proj-row">
+          <div>
+            <div class="proj-row-name">🏠 Voice Home Control</div>
+            <div class="proj-row-desc">IoT system on Raspberry Pi for hands-free voice control of home appliances with
+              real-time signal processing.</div>
+            <div class="proj-row-tags"><span class="proj-row-tag">Python</span><span class="proj-row-tag">Raspberry
+                Pi</span><span class="proj-row-tag">GPIO</span></div>
+          </div>
+          <div class="proj-row-right"></div>
+        </div>
+
+        <div class="proj-row">
+          <div>
+            <div class="proj-row-name">🤖 AI Health Chatbot</div>
+            <div class="proj-row-desc">Built from scratch in Python + NLP. Answers health queries, generates wellness
+              prompts, and suggests medications from symptoms.</div>
+            <div class="proj-row-tags"><span class="proj-row-tag">Python</span><span class="proj-row-tag">NLP</span>
+            </div>
+          </div>
+          <div class="proj-row-right"></div>
+        </div>
+
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  /* ── THEME TOGGLE ── */
-  function toggleTheme(){
-    const bw = document.body.classList.toggle('bw');
-    document.getElementById('theme-label').textContent = bw ? 'Color' : 'B&W';
-  }
+  <!-- ══════════════════ THOUGHTS PAGE ══════════════════ -->
+  <div id="view-thoughts" class="view">
+    <div style="max-width:1100px;margin:0 auto;padding:20px 0">
+      <button class="back-btn" onclick="showView('home')">← back</button>
+      <div class="page-title">THOU<br>GHTS.</div>
+      <div class="thought-list">
+        <div class="thought-item">
+          <div class="thought-meta">feb 2026 · on learning</div>
+          <div class="thought-title">being a fast learner is the only real skill</div>
+          <div class="thought-body">every job posting asks for 3 years of experience with a framework that's 2 years
+            old. the only thing that actually compounds is the ability to pick things up quickly — the frameworks
+            change, the curiosity doesn't.</div>
+        </div>
+        <div class="thought-item">
+          <div class="thought-meta">jan 2026 · on building</div>
+          <div class="thought-title">ship it ugly, then fix it</div>
+          <div class="thought-body">the cleanest code i've never written is also the code that's never run. momentum
+            matters more than perfection, especially early. you learn what something actually needs to be by watching
+            people use the broken version.</div>
+        </div>
+        <div class="thought-item">
+          <div class="thought-meta">dec 2025 · on sport &amp; code</div>
+          <div class="thought-title">competing at nationals taught me more about engineering than school did</div>
+          <div class="thought-body">showing up when you don't want to, performing under pressure, reading the game in
+            real time — turns out that's also 80% of what makes a good engineer. the other 20% is stackoverflow.</div>
+        </div>
+      </div>
+    </div>
 
-  /* ── VIEW SWITCHING ── */
-  function showView(name){
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.getElementById('view-'+name).classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-    if(name==='home'){
-      document.querySelectorAll('#view-home .card').forEach((c,i)=>{
-        c.style.animation='none';
-        c.offsetHeight;
-        c.style.animation='';
-        c.style.animationDelay=(0.03+i*0.06)+'s';
-      });
-    }
-  }
+    <!-- ══════════════════ EXPERIENCE PAGE ══════════════════ -->
+    <div id="view-experience" class="view">
+      <div style="max-width:1100px;margin:0 auto;padding:20px 0">
+        <button class="back-btn" onclick="showView('home')">← back</button>
+        <div class="page-title">EXPE<br>RIENCE.</div>
+        <div class="proj-list">
 
-  /* ── TYPEWRITER ── */
-  const words=['websites.','ai agents.','games.','stuff.','cool things.','the future.','React apps.','IoT systems.'];
-  const el=document.getElementById('tw-word');
-  let wi=0,ci=0,del=false;
-  function type(){
-    const w=words[wi];
-    if(!del){
-      el.textContent=w.slice(0,++ci);
-      if(ci===w.length){del=true;setTimeout(type,1600);return;}
-      setTimeout(type,95);
-    } else {
-      el.textContent=w.slice(0,--ci);
-      if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(type,300);return;}
-      setTimeout(type,48);
-    }
-  }
-  setTimeout(type,800);
-</script>
+          <div class="proj-row no-hover" style="cursor:default">
+            <div>
+              <div class="proj-row-name">🚀 Sigment AI</div>
+              <div class="proj-row-desc">Software Engineering Intern (Jul '25 - Sep '25). Contributed to a unified
+                marketplace platform for autonomous AI agents. Simplified integration and deployment for business
+                operations.</div>
+              <div class="proj-row-tags"><span class="proj-row-tag">AI Agents</span><span class="proj-row-tag">Platform
+                  Eng</span><span class="proj-row-tag">Marketplace</span></div>
+            </div>
+            <div class="proj-row-right">
+              <span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">internship</span>
+            </div>
+          </div>
+
+          <div class="proj-row no-hover" style="cursor:default">
+            <div>
+              <div class="proj-row-name">💻 Freelance Fullstack</div>
+              <div class="proj-row-desc">Engineering & Design (May '25 - Present). Building responsive, high-speed
+                websites for local startups in India & Germany. Solutions for education and retail sectors.</div>
+              <div class="proj-row-tags"><span class="proj-row-tag">Next.js</span><span
+                  class="proj-row-tag">React</span><span class="proj-row-tag">Node.js</span><span
+                  class="proj-row-tag">Java</span></div>
+            </div>
+            <div class="proj-row-right">
+              <span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">freelance</span>
+            </div>
+          </div>
+
+          <div class="proj-row no-hover" style="cursor:default">
+            <div>
+              <div class="proj-row-name">🎓 TU Munich</div>
+              <div class="proj-row-desc">Computer Science (Studienkolleg). Oct '25 - Present.<br>Relevant coursework:
+                Advanced Mathematics, Linear Algebra, Calculus, Intro to Programming.</div>
+              <div class="proj-row-tags"><span class="proj-row-tag">CS</span><span class="proj-row-tag">Math</span><span
+                  class="proj-row-tag">Munich</span></div>
+            </div>
+            <div class="proj-row-right">
+              <span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">education</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      /* ── THEME TOGGLE ── */
+      function toggleTheme() {
+        document.body.classList.toggle('bw');
+      }
+
+      /* ── VIEW SWITCHING ── */
+      function showView(name) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById('view-' + name).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (name === 'home') {
+          document.querySelectorAll('#view-home .card').forEach((c, i) => {
+            c.style.animation = 'none';
+            c.offsetHeight;
+            c.style.animation = '';
+            c.style.animationDelay = (0.03 + i * 0.06) + 's';
+          });
+        }
+      }
+
+      /* ── TYPEWRITER ── */
+      const words = ['websites.', 'ai agents.', 'games.', 'stuff.', 'cool things.', 'the future.', 'React apps.', 'IoT systems.'];
+      const el = document.getElementById('tw-word');
+      let wi = 0, ci = 0, del = false;
+      function type() {
+        const w = words[wi];
+        if (!del) {
+          el.textContent = w.slice(0, ++ci);
+          if (ci === w.length) { del = true; setTimeout(type, 1600); return; }
+          setTimeout(type, 95);
+        } else {
+          el.textContent = w.slice(0, --ci);
+          if (ci === 0) { del = false; wi = (wi + 1) % words.length; setTimeout(type, 300); return; }
+          setTimeout(type, 48);
+        }
+      }
+      setTimeout(type, 800);
+    </script>
 </body>
+
 </html>
