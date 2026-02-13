@@ -273,7 +273,7 @@ export default function Portfolio() {
             </a>
           </div>
 
-          <div className="card col-12 quote-card">
+          <div className="card col-6 quote-card">
             <div className="quote-text">
               &quot;i don&apos;t have much experience, but i&apos;m a <strong>fast learner</strong> —
               and i&apos;ve actually been told so by many people.
