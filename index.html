@@ -104,6 +104,62 @@
       color: #333
     }
 
+    /* Light Theme Accent Cards */
+    body.bw .card-projects {
+      background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+      border-color: #a5b4fc
+    }
+
+    body.bw .card-projects:hover {
+      border-color: #818cf8
+    }
+
+    body.bw .card-projects .section-title {
+      color: #312e81
+    }
+
+    body.bw .card-projects .card-icon {
+      color: #4338ca;
+      opacity: 1
+    }
+
+    body.bw .card-edu {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border-color: #86efac
+    }
+
+    body.bw .card-edu:hover {
+      border-color: #4ade80
+    }
+
+    body.bw .card-edu .section-title {
+      color: #064e3b
+    }
+
+    body.bw .card-edu .card-icon {
+      color: #15803d;
+      opacity: 1
+    }
+
+    body.bw .card-exp {
+      background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+      border-color: #fdba74
+    }
+
+    body.bw .card-exp:hover {
+      border-color: #fb923c
+    }
+
+    body.bw .card-exp .section-title {
+      color: #7c2d12
+    }
+
+    body.bw .card-exp .card-icon {
+      color: #c2410c;
+      opacity: 1
+    }
+
+
     html {
       scroll-behavior: smooth
     }
@@ -212,7 +268,7 @@
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 12px;
-      max-width: 1100px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
@@ -536,7 +592,7 @@
       opacity: 1
     }
 
-    .card-thoughts:hover .card-icon {
+    .card-edu:hover .card-icon {
       animation: wobble .5s ease forwards;
       opacity: 1
     }
@@ -565,7 +621,8 @@
 
     /* shimmer sweep */
     .card-projects::after,
-    .card-thoughts::after {
+    .card-edu::after,
+    .card-exp::after {
       content: '';
       position: absolute;
       top: -60%;
@@ -577,7 +634,8 @@
     }
 
     .card-projects:hover::after,
-    .card-thoughts:hover::after {
+    .card-edu:hover::after,
+    .card-exp:hover::after {
       animation: shimmer .65s ease forwards
     }
 
@@ -587,6 +645,7 @@
       }
     }
 
+    /* ── CARD COLORS ── */
     .card-projects {
       background: linear-gradient(135deg, #2d1060 0%, #1a0525 100%);
       border-color: #3d1a6a
@@ -596,12 +655,12 @@
       border-color: #6040aa
     }
 
-    .card-thoughts {
+    .card-edu {
       background: linear-gradient(135deg, #0f3a3a 0%, #0a2828 100%);
       border-color: #1a4a4a
     }
 
-    .card-thoughts:hover {
+    .card-edu:hover {
       border-color: #2a7070
     }
 
@@ -617,21 +676,6 @@
     .card-exp:hover .card-icon {
       transform: translateY(-3px) scale(1.1);
       opacity: 1
-    }
-
-    .card-exp::after {
-      content: '';
-      position: absolute;
-      top: -60%;
-      left: -60%;
-      width: 60%;
-      height: 200%;
-      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .07) 50%, transparent 60%);
-      transform: skewX(-20deg) translateX(-100%);
-    }
-
-    .card-exp:hover::after {
-      animation: shimmer .65s ease forwards
     }
 
     /* ── AVAILABLE ── */
@@ -1205,15 +1249,10 @@
         <div class="section-title">PRO<br>JECTS.</div>
       </div>
 
-      <!-- THOUGHTS accent -->
-      <div class="card col-3 section-card card-thoughts link-card" onclick="showView('thoughts')">
-        <div class="card-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
-          </svg>
-        </div>
-        <div class="section-title">THOU<br>GHTS.</div>
+      <!-- EDUCATION accent (Replacing Thoughts) -->
+      <div class="card col-3 section-card card-edu link-card" onclick="showView('education')">
+        <div class="card-icon">🎓</div>
+        <div class="section-title">EDU<br>CATION.</div>
       </div>
 
       <!-- AVAILABLE -->
@@ -1244,7 +1283,7 @@
       <!-- EXPERIENCE accent -->
       <div class="card col-3 section-card card-exp link-card" onclick="showView('experience')">
         <div class="card-icon" style="color:#fff">💼</div>
-        <div class="section-title">EXP.<br>& EDU.</div>
+        <div class="section-title">EXP<br>ERIENCE.</div>
       </div>
 
       <!-- SPOTIFY -->
@@ -1335,7 +1374,7 @@
 
   <!-- ══════════════════ PROJECTS PAGE ══════════════════ -->
   <div id="view-projects" class="view">
-    <div style="max-width:1100px;margin:0 auto;padding:20px 0">
+    <div style="max-width:960px;margin:0 auto;padding:20px 0">
       <button class="back-btn" onclick="showView('home')">← back</button>
       <div class="page-title">PRO<br>JECTS.</div>
       <div class="proj-list">
@@ -1375,7 +1414,7 @@
             <div class="proj-row-desc">PvP arena fighter with a window-based environmental mechanic. Custom physics and
               collision, non-traditional arenas built from scratch in Godot.</div>
             <div class="proj-row-tags"><span class="proj-row-tag">GDScript</span><span
-                class="proj-row-tag">Godot</span><span class="proj-row-tag">Blender</span></div>
+                class="proj-row-tag">Godot</span><span class="tag">Blender</span></div>
           </div>
           <div class="proj-row-right"><span
               style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">local build</span></div>
@@ -1407,127 +1446,138 @@
     </div>
   </div>
 
-  <!-- ══════════════════ THOUGHTS PAGE ══════════════════ -->
-  <div id="view-thoughts" class="view">
-    <div style="max-width:1100px;margin:0 auto;padding:20px 0">
+  <!-- ══════════════════ EDUCATION PAGE (New) ══════════════════ -->
+  <div id="view-education" class="view">
+    <div style="max-width:960px;margin:0 auto;padding:20px 0">
       <button class="back-btn" onclick="showView('home')">← back</button>
-      <div class="page-title">THOU<br>GHTS.</div>
-      <div class="thought-list">
-        <div class="thought-item">
-          <div class="thought-meta">feb 2026 · on learning</div>
-          <div class="thought-title">being a fast learner is the only real skill</div>
-          <div class="thought-body">every job posting asks for 3 years of experience with a framework that's 2 years
-            old. the only thing that actually compounds is the ability to pick things up quickly — the frameworks
-            change, the curiosity doesn't.</div>
+      <div class="page-title">EDU<br>CATION.</div>
+      <div class="proj-list">
+
+        <div class="proj-row no-hover" style="cursor:default">
+          <div>
+            <div class="proj-row-name">🎓 TU Munich</div>
+            <div class="proj-row-desc">
+              <strong>Computer Science (Studienkolleg)</strong><br>
+              <span style="color:var(--dim)">Oct 2025 - Present</span><br>
+              Current coursework includes Advanced Mathematics, Higher Physics, Linear Algebra, Calculus, and
+              Introduction to Programming.
+            </div>
+          </div>
         </div>
-        <div class="thought-item">
-          <div class="thought-meta">jan 2026 · on building</div>
-          <div class="thought-title">ship it ugly, then fix it</div>
-          <div class="thought-body">the cleanest code i've never written is also the code that's never run. momentum
-            matters more than perfection, especially early. you learn what something actually needs to be by watching
-            people use the broken version.</div>
+
+        <div class="proj-row no-hover" style="cursor:default">
+          <div>
+            <div class="proj-row-name">🏫 S. N. Kansagra School</div>
+            <div class="proj-row-desc">
+              <strong>Valedictorian (97% in Class XII)</strong><br>
+              <span style="color:var(--dim)">Jun 2013 - Apr 2025</span><br>
+              Ranked among the top 0.1% in India. Specialized in Advanced Mathematics, Computer Science, and Physics.
+            </div>
+          </div>
         </div>
-        <div class="thought-item">
-          <div class="thought-meta">dec 2025 · on sport &amp; code</div>
-          <div class="thought-title">competing at nationals taught me more about engineering than school did</div>
-          <div class="thought-body">showing up when you don't want to, performing under pressure, reading the game in
-            real time — turns out that's also 80% of what makes a good engineer. the other 20% is stackoverflow.</div>
-        </div>
+
       </div>
     </div>
+  </div>
 
-    <!-- ══════════════════ EXPERIENCE PAGE ══════════════════ -->
-    <div id="view-experience" class="view">
-      <div style="max-width:1100px;margin:0 auto;padding:20px 0">
-        <button class="back-btn" onclick="showView('home')">← back</button>
-        <div class="page-title">EXPE<br>RIENCE.</div>
-        <div class="proj-list">
+  <!-- ══════════════════ EXPERIENCE PAGE ══════════════════ -->
+  <div id="view-experience" class="view">
+    <div style="max-width:960px;margin:0 auto;padding:20px 0">
+      <button class="back-btn" onclick="showView('home')">← back</button>
+      <div class="page-title">EXPE<br>RIENCE.</div>
+      <div class="proj-list">
 
-          <div class="proj-row no-hover" style="cursor:default">
-            <div>
-              <div class="proj-row-name">🚀 Sigment AI</div>
-              <div class="proj-row-desc">Software Engineering Intern (Jul '25 - Sep '25). Contributed to a unified
-                marketplace platform for autonomous AI agents. Simplified integration and deployment for business
-                operations.</div>
-              <div class="proj-row-tags"><span class="proj-row-tag">AI Agents</span><span class="proj-row-tag">Platform
-                  Eng</span><span class="proj-row-tag">Marketplace</span></div>
+        <div class="proj-row no-hover" style="cursor:default">
+          <div>
+            <div class="proj-row-name">🚀 Sigment AI</div>
+            <div class="proj-row-desc">
+              <strong>Software Engineering Intern</strong><br>
+              <span style="color:var(--dim)">Jul '25 - Sep '25</span><br>
+              Contributed to a unified marketplace platform for autonomous AI agents. Simplified integration and
+              deployment for business operations.
             </div>
-            <div class="proj-row-right">
-              <span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">internship</span>
-            </div>
+            <div class="proj-row-tags"><span class="proj-row-tag">AI Agents</span><span class="proj-row-tag">Platform
+                Eng</span><span class="proj-row-tag">Marketplace</span></div>
           </div>
-
-          <div class="proj-row no-hover" style="cursor:default">
-            <div>
-              <div class="proj-row-name">💻 Freelance Fullstack</div>
-              <div class="proj-row-desc">Engineering & Design (May '25 - Present). Building responsive, high-speed
-                websites for local startups in India & Germany. Solutions for education and retail sectors.</div>
-              <div class="proj-row-tags"><span class="proj-row-tag">Next.js</span><span
-                  class="proj-row-tag">React</span><span class="proj-row-tag">Node.js</span><span
-                  class="proj-row-tag">Java</span></div>
-            </div>
-            <div class="proj-row-right">
-              <span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">freelance</span>
-            </div>
+          <div class="proj-row-right">
+            <span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">internship</span>
           </div>
-
-          <div class="proj-row no-hover" style="cursor:default">
-            <div>
-              <div class="proj-row-name">🎓 TU Munich</div>
-              <div class="proj-row-desc">Computer Science (Studienkolleg). Oct '25 - Present.<br>Relevant coursework:
-                Advanced Mathematics, Linear Algebra, Calculus, Intro to Programming.</div>
-              <div class="proj-row-tags"><span class="proj-row-tag">CS</span><span class="proj-row-tag">Math</span><span
-                  class="proj-row-tag">Munich</span></div>
-            </div>
-            <div class="proj-row-right">
-              <span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">education</span>
-            </div>
-          </div>
-
         </div>
+
+        <div class="proj-row no-hover" style="cursor:default">
+          <div>
+            <div class="proj-row-name">💻 Freelance Fullstack</div>
+            <div class="proj-row-desc">
+              <strong>Engineering & Design</strong><br>
+              <span style="color:var(--dim)">May '25 - Present</span><br>
+              Building responsive, high-speed websites for local startups in India & Germany. Solutions for education
+              and retail sectors.
+            </div>
+            <div class="proj-row-tags"><span class="proj-row-tag">Next.js</span><span
+                class="proj-row-tag">React</span><span class="proj-row-tag">Node.js</span><span
+                class="proj-row-tag">Java</span></div>
+          </div>
+          <div class="proj-row-right">
+            <span style="font-size:11px;color:var(--dim);font-family:'Syne Mono',monospace">freelance</span>
+          </div>
+        </div>
+
       </div>
     </div>
+  </div>
 
+  <script>
+    /* ── THEME TOGGLE ── */
+    function toggleTheme() {
+      document.body.classList.toggle('bw');
+    }
 
-    <script>
-      /* ── THEME TOGGLE ── */
-      function toggleTheme() {
-        document.body.classList.toggle('bw');
-      }
+    /* ── VIEW SWITCHING ── */
+    function showView(name) {
+      // Hide all views
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
 
-      /* ── VIEW SWITCHING ── */
-      function showView(name) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        document.getElementById('view-' + name).classList.add('active');
+      // Show target view
+      const target = document.getElementById('view-' + name);
+      if (target) {
+        target.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Re-trigger animations for home
         if (name === 'home') {
           document.querySelectorAll('#view-home .card').forEach((c, i) => {
             c.style.animation = 'none';
-            c.offsetHeight;
+            c.offsetHeight; /* trigger reflow */
             c.style.animation = '';
             c.style.animationDelay = (0.03 + i * 0.06) + 's';
           });
         }
+      } else {
+        console.error('View not found:', name);
       }
+    }
 
-      /* ── TYPEWRITER ── */
-      const words = ['websites.', 'ai agents.', 'games.', 'stuff.', 'cool things.', 'the future.', 'React apps.', 'IoT systems.'];
-      const el = document.getElementById('tw-word');
-      let wi = 0, ci = 0, del = false;
-      function type() {
-        const w = words[wi];
-        if (!del) {
-          el.textContent = w.slice(0, ++ci);
-          if (ci === w.length) { del = true; setTimeout(type, 1600); return; }
-          setTimeout(type, 95);
-        } else {
-          el.textContent = w.slice(0, --ci);
-          if (ci === 0) { del = false; wi = (wi + 1) % words.length; setTimeout(type, 300); return; }
-          setTimeout(type, 48);
-        }
+    /* ── TYPEWRITER ── */
+    const words = ['websites.', 'ai agents.', 'games.', 'stuff.', 'cool things.', 'the future.', 'React apps.', 'IoT systems.'];
+    const el = document.getElementById('tw-word');
+    let wi = 0, ci = 0, del = false;
+
+    function type() {
+      const w = words[wi];
+      if (!del) {
+        el.textContent = w.slice(0, ++ci);
+        if (ci === w.length) { del = true; setTimeout(type, 1600); return; }
+        setTimeout(type, 95);
+      } else {
+        el.textContent = w.slice(0, --ci);
+        if (ci === 0) { del = false; wi = (wi + 1) % words.length; setTimeout(type, 300); return; }
+        setTimeout(type, 48);
       }
-      setTimeout(type, 800);
-    </script>
+    }
+
+    // Start typewriter if element exists
+    if (el) setTimeout(type, 800);
+  </script>
 </body>
 
 </html>
