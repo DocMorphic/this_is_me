@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { DraggableCard } from "./DraggableCard";
 
 type ViewName = "home" | "projects" | "education" | "experience";
 
@@ -12,12 +13,10 @@ const TYPEWRITER_WORDS = [
   "cool things.",
   "the future.",
   "React apps.",
-  "IoT systems.",
+  "what if ideas.",
 ];
 
 const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "KeyB", "KeyA"];
-
-import { Icons } from "./TechStackIcons";
 
 export default function Portfolio() {
   const [view, setView] = useState<ViewName>("home");
@@ -75,16 +74,6 @@ export default function Portfolio() {
   const showView = useCallback((name: ViewName) => {
     setView(name);
     window.scrollTo({ top: 0, behavior: "smooth" });
-    if (name === "home" && homeGridRef.current) {
-      const cards = homeGridRef.current.querySelectorAll(".card");
-      cards.forEach((c, i) => {
-        const el = c as HTMLElement;
-        el.style.animation = "none";
-        void (el as HTMLElement).offsetHeight;
-        el.style.animation = "";
-        el.style.animationDelay = `${0.03 + i * 0.06}s`;
-      });
-    }
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -146,74 +135,76 @@ export default function Portfolio() {
         className={`view ${view === "home" ? "active" : ""}`}
       >
         <div className="grid" ref={homeGridRef}>
-          <div className="card col-12 hero-card">
+          <DraggableCard className="card col-12 hero-card" index={0}>
             <div>
               <div className="hero-name">dharmay dave</div>
               <div className="hero-tagline">
                 i make <span className="tw-word">{typewriterWord}</span>
                 <span className="tw-cursor" />
               </div>
-              <div className="hero-desc">
+              <div className="hero-desc font-body">
                 cs student at <strong style={{ color: "var(--text)" }}>TU Munich</strong>, fullstack engineer,
-                national-level athlete. i like hard problems and people who&apos;ve already solved them.
+                game developer. i like hard problems and making &quot;what if&quot; ideas come to life.
               </div>
-              <div className="now-section">
+              <div className="now-section font-body">
                 <span className="now-label">now:</span>
                 <span>learning HCI</span>
                 <span>·</span>
                 <span>building with AI</span>
                 <span>·</span>
-                <span>reading the documentation lol</span>
+                <span>reading the documentation</span>
               </div>
-              <div className="status-line">
+              <div className="status-line font-body">
                 <span className="status-dot" />
                 munich &nbsp;·&nbsp; open to internships
               </div>
             </div>
             <div className="hero-emoji">🇩🇪</div>
-          </div>
+          </DraggableCard>
 
-          <div className="card col-5">
+          <DraggableCard className="card col-5" index={1}>
             <div className="card-title"><span className="bracket">{`{}`}</span> STACKs.</div>
             <div className="tag-section">Web & Mobile:</div>
-            <div className="tag-row icon-row">
-              <Icons.React /><Icons.NextJS /><Icons.NodeJS />
-              <Icons.Python /><Icons.Java /><Icons.TypeScript />
-              <Icons.ReactNative />
+            <div className="tag-row">
+              <span className="tag">React</span><span className="tag">Next.js</span><span className="tag">Node.js</span>
+              <span className="tag">Python</span><span className="tag">Java</span><span className="tag">TypeScript</span>
+              <span className="tag">React Native</span>
             </div>
             <div className="tag-section">Game Dev:</div>
-            <div className="tag-row icon-row">
-              <Icons.Godot /><Icons.Unity /><Icons.Unreal />
+            <div className="tag-row">
+              <span className="tag">Godot</span><span className="tag">Unity</span><span className="tag">Unreal Engine</span>
             </div>
             <div className="tag-section">Into:</div>
-            <div className="tag-row icon-row">
-              <Icons.Ai /><Icons.Hci /><Icons.Iot />
+            <div className="tag-row">
+              <span className="tag">LLMs</span><span className="tag">AI Agents</span><span className="tag">HCI</span><span className="tag">IoT</span>
             </div>
-          </div>
+          </DraggableCard>
 
-          <div
+          <DraggableCard
             className="card col-4 section-card card-projects link-card"
             onClick={() => showView("projects")}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && showView("projects")}
+            onKeyDown={(e: any) => e.key === "Enter" && showView("projects")}
+            index={2}
           >
             <div className="card-icon">⚙️</div>
             <div className="section-title">PRO<br />JECTS.</div>
-          </div>
+          </DraggableCard>
 
-          <div
+          <DraggableCard
             className="card col-3 section-card card-edu link-card"
             onClick={() => showView("education")}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && showView("education")}
+            onKeyDown={(e: any) => e.key === "Enter" && showView("education")}
+            index={3}
           >
             <div className="card-icon">🎓</div>
             <div className="section-title">EDU<br />CATION.</div>
-          </div>
+          </DraggableCard>
 
-          <div className="card col-3 avail-card">
+          <DraggableCard className="card col-3 avail-card" index={4}>
             <div>
               <div className="avail-label">Status</div>
               <div className="avail-text">Available.</div>
@@ -227,34 +218,35 @@ export default function Portfolio() {
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
             </a>
-          </div>
+          </DraggableCard>
 
-          <div className="card col-3">
+          <DraggableCard className="card col-3" index={5}>
             <div className="loc-label">Location</div>
             <div className="loc-value">Munich 🇩🇪</div>
             <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 6 }}>TU Munich · CS</div>
             <div style={{ fontSize: 12, color: "var(--dim)", marginTop: 16 }}>originally from Rajkot, India 🇮🇳</div>
-          </div>
+          </DraggableCard>
 
-          <div className="card col-3">
+          <DraggableCard className="card col-3" index={6}>
             <div className="card-title" style={{ fontSize: 22, marginBottom: 16 }}>SPORT.</div>
             <div className="sport-line"><span className="sport-emoji">🏐</span><span>national <strong>volleyball</strong>, Gujarat</span></div>
             <div className="sport-line"><span className="sport-emoji">🎾</span><span>national <strong>squash</strong>, Gujarat</span></div>
             <div style={{ fontSize: 12, color: "var(--dim)", marginTop: 6 }}>2022 – 2024</div>
-          </div>
+          </DraggableCard>
 
-          <div
+          <DraggableCard
             className="card col-3 section-card card-exp link-card"
             onClick={() => showView("experience")}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && showView("experience")}
+            onKeyDown={(e: any) => e.key === "Enter" && showView("experience")}
+            index={7}
           >
             <div className="card-icon" style={{ color: "#fff" }}>💼</div>
             <div className="section-title">EXP<br />ERIENCE.</div>
-          </div>
+          </DraggableCard>
 
-          <div className="card col-6 no-hover spotify-card">
+          <DraggableCard className="card col-6 no-hover spotify-card" index={8}>
             <div className="spotify-header">
               <div className="spotify-logo">
                 <svg width={13} height={13} viewBox="0 0 24 24" fill="white">
@@ -283,10 +275,10 @@ export default function Portfolio() {
               </div>
               <div className="song-playing"><div className="bar" /><div className="bar" /><div className="bar" /></div>
             </a>
-          </div>
+          </DraggableCard>
 
-          <div className="card col-6 quote-card">
-            <div className="quote-text">
+          <DraggableCard className="card col-6 quote-card" index={9}>
+            <div className="quote-text font-body">
               &quot;i don&apos;t have much experience, but i&apos;m a <strong>fast learner</strong> —
               and i&apos;ve actually been told so by many people.
               i just want to learn from and work with the best people.&quot;
@@ -309,7 +301,7 @@ export default function Portfolio() {
                 </svg>
               </a>
             </div>
-          </div>
+          </DraggableCard>
 
           <div className="footer-row"><span>© 2026 dharmay dave · munich</span></div>
         </div>

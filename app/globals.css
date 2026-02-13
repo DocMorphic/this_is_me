@@ -23,7 +23,7 @@
 }
 
 body.bw {
-  --bg: #f0f0f0;
+  --bg: #f0f4ff;
   --card: #ffffff;
   --card-h: #f5f5f5;
   --border: #d0d0d0;
@@ -34,6 +34,38 @@ body.bw {
   --tag-bg: #e8e8e8;
   --orange: #111111;
   --green: #222222;
+}
+
+body.bw .card-title,
+body.bw .section-title,
+body.bw .page-title,
+body.bw .hero-name,
+body.bw .proj-row-name {
+  color: #000000;
+}
+
+body.bw .hero-desc,
+body.bw .hero-tagline,
+body.bw .pro-row-desc {
+  color: #333333;
+}
+
+body.bw .tw-word {
+  color: #111;
+}
+
+body.bw .bracket {
+  color: #444444;
+}
+
+body.bw .tag {
+  color: #222;
+  border-color: #bbb;
+  background: #e0e0e0;
+}
+
+body.bw .back-btn {
+  color: #222;
 }
 
 body.bw .card-projects {
@@ -52,20 +84,20 @@ body.bw .avail-card {
 }
 
 body.bw .avail-text,
-.bw .avail-label {
-  color: #333
+body.bw .avail-label {
+  color: #111111
+}
+
+body.bw .loc-label {
+  color: #444444
 }
 
 body.bw .avail-sub {
-  color: #888
+  color: #555555
 }
 
 body.bw .status-dot {
   background: #555
-}
-
-body.bw .section-title {
-  color: #111
 }
 
 body.bw .card-icon {
@@ -92,60 +124,68 @@ body.bw .theme-btn {
   color: #333
 }
 
-/* Light Theme Accent Cards */
+/* Light Theme Accent Cards - Vibrant/Premium */
 body.bw .card-projects {
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-  border-color: #a5b4fc
+  background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  border: none;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.25);
 }
 
 body.bw .card-projects:hover {
-  border-color: #818cf8
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.35);
 }
 
 body.bw .card-projects .section-title {
-  color: #312e81
+  color: #fff;
 }
 
 body.bw .card-projects .card-icon {
-  color: #4338ca;
-  opacity: 1
+  color: #fff;
+  opacity: 0.9;
 }
 
 body.bw .card-edu {
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-  border-color: #86efac
+  background: linear-gradient(135deg, #0f766e 0%, #0e7490 100%);
+  border: none;
+  box-shadow: 0 10px 25px rgba(14, 116, 144, 0.25);
 }
 
 body.bw .card-edu:hover {
-  border-color: #4ade80
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(14, 116, 144, 0.35);
 }
 
 body.bw .card-edu .section-title {
-  color: #064e3b
+  color: #fff;
 }
 
 body.bw .card-edu .card-icon {
-  color: #15803d;
-  opacity: 1
+  color: #fff;
+  opacity: 0.9;
 }
 
 body.bw .card-exp {
-  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
-  border-color: #fdba74
+  background: linear-gradient(135deg, #ca8a04 0%, #ea580c 100%);
+  border: none;
+  box-shadow: 0 10px 25px rgba(234, 88, 12, 0.25);
 }
 
 body.bw .card-exp:hover {
-  border-color: #fb923c
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(234, 88, 12, 0.35);
 }
 
 body.bw .card-exp .section-title {
-  color: #7c2d12
+  color: #fff;
 }
 
 body.bw .card-exp .card-icon {
-  color: #c2410c;
-  opacity: 1
+  color: #fff;
+  opacity: 0.9;
 }
+
+
 
 
 html {
@@ -268,10 +308,7 @@ body.bw .theme-switch .switch-track {
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
-  opacity: 0;
-  transform: translateY(14px);
-  animation: cardIn .5s cubic-bezier(.22, .68, 0, 1.2) forwards;
-  transition: background .25s, border-color .25s, transform .22s, box-shadow .22s;
+  transition: background .25s, border-color .25s, box-shadow .22s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -285,12 +322,15 @@ body.bw .theme-switch .switch-track {
 .card:hover {
   background: var(--card-h);
   border-color: var(--border-h);
-  transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
 }
 
+body.bw .card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 body.bw .card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .12)
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 .no-hover:hover {
@@ -307,76 +347,13 @@ body.bw .card:hover {
   cursor: pointer
 }
 
-.link-card:hover {
-  transform: translateY(-5px) !important
-}
 
-@keyframes cardIn {
-  to {
-    opacity: 1;
-    transform: translateY(0)
-  }
-}
 
-.card:nth-child(1) {
-  animation-delay: .03s
-}
 
-.card:nth-child(2) {
-  animation-delay: .09s
-}
 
-.card:nth-child(3) {
-  animation-delay: .15s
-}
 
-.card:nth-child(4) {
-  animation-delay: .21s
-}
 
-.card:nth-child(5) {
-  animation-delay: .27s
-}
 
-.card:nth-child(6) {
-  animation-delay: .33s
-}
-
-.card:nth-child(7) {
-  animation-delay: .39s
-}
-
-.card:nth-child(8) {
-  animation-delay: .45s
-}
-
-.card:nth-child(9) {
-  animation-delay: .51s
-}
-
-.card:nth-child(10) {
-  animation-delay: .57s
-}
-
-.card:nth-child(11) {
-  animation-delay: .63s
-}
-
-.card:nth-child(12) {
-  animation-delay: .69s
-}
-
-.card:nth-child(13) {
-  animation-delay: .75s
-}
-
-.card:nth-child(14) {
-  animation-delay: .81s
-}
-
-.card:nth-child(15) {
-  animation-delay: .87s
-}
 
 .col-12 {
   grid-column: span 12
