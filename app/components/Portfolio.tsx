@@ -17,6 +17,8 @@ const TYPEWRITER_WORDS = [
 
 const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "KeyB", "KeyA"];
 
+import { Icons } from "./TechStackIcons";
+
 export default function Portfolio() {
   const [view, setView] = useState<ViewName>("home");
   const [lightTheme, setLightTheme] = useState(false);
@@ -174,18 +176,18 @@ export default function Portfolio() {
           <div className="card col-5">
             <div className="card-title"><span className="bracket">{`{}`}</span> STACKs.</div>
             <div className="tag-section">Web & Mobile:</div>
-            <div className="tag-row">
-              <span className="tag">React</span><span className="tag">Next.js</span><span className="tag">Node.js</span>
-              <span className="tag">Python</span><span className="tag">Java</span><span className="tag">TypeScript</span>
-              <span className="tag">React Native</span>
+            <div className="tag-row icon-row">
+              <Icons.React /><Icons.NextJS /><Icons.NodeJS />
+              <Icons.Python /><Icons.Java /><Icons.TypeScript />
+              <Icons.ReactNative />
             </div>
             <div className="tag-section">Game Dev:</div>
-            <div className="tag-row">
-              <span className="tag">Godot</span><span className="tag">Unity</span><span className="tag">Unreal Engine</span>
+            <div className="tag-row icon-row">
+              <Icons.Godot /><Icons.Unity /><Icons.Unreal />
             </div>
             <div className="tag-section">Into:</div>
-            <div className="tag-row">
-              <span className="tag">LLMs</span><span className="tag">AI Agents</span><span className="tag">HCI</span><span className="tag">IoT</span>
+            <div className="tag-row icon-row">
+              <Icons.Ai /><Icons.Hci /><Icons.Iot />
             </div>
           </div>
 
@@ -212,9 +214,19 @@ export default function Portfolio() {
           </div>
 
           <div className="card col-3 avail-card">
-            <div className="avail-label">Status</div>
-            <div className="avail-text">Available.</div>
-            <div className="avail-sub">internships &amp; projects</div>
+            <div>
+              <div className="avail-label">Status</div>
+              <div className="avail-text">Available.</div>
+              <div className="avail-sub">internships &amp; projects</div>
+            </div>
+            <a href="/cv.pdf" download className="cv-btn">
+              <span>Download CV</span>
+              <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </a>
           </div>
 
           <div className="card col-3">
