@@ -274,6 +274,14 @@
       transition: background .25s, border-color .25s, transform .22s, box-shadow .22s;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .card {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+
     .card:hover {
       background: var(--card-h);
       border-color: var(--border-h);
@@ -1187,7 +1195,8 @@
 
     .board-card {
       position: absolute;
-      touch-action: none;
+      overflow: visible;
+      box-sizing: border-box;
     }
 
     .board-card.react-draggable-dragging {
@@ -1211,6 +1220,7 @@
       opacity: 0.5;
       border-radius: 6px;
       transition: opacity 0.2s, color 0.2s;
+      touch-action: none;
     }
 
     .card-drag-handle:hover {

@@ -21,7 +21,17 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body
+        style={{
+          margin: 0,
+          minHeight: "100vh",
+          backgroundColor: "#0f0f0f",
+          color: "#e5e5e5",
+          fontFamily: "'Syne', sans-serif",
+        }}
+      >
+        {children}
+      </body>
     </html>
   );
 }
