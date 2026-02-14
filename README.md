@@ -1,1 +1,1 @@
-Hi Dharmay here, this is my portfolio. Feel free to look around :D
+Hey, Dharmay here! This is my portfolio. Feel free to look around :D
